@@ -1,26 +1,40 @@
 """
-Line Segment Class. We use this class to allow the user to pass line segments
-to our functions in a simplier way.
+Line Segment Class.
 
 Sources/Links:
-Help with general equations: https://www.cuemath.com/geometry/intersection-of-two-lines/
+Help with math: https://www.cuemath.com/geometry/intersection-of-two-lines/
 """
 
 from __future__ import annotations
 from math import sqrt
 from dataclasses import dataclass
 
+__all__ = [
+    'Point',
+    'LineSegment'
+]
+
 @dataclass
 class Point:
     x: int
     y: int
 
+    def __hash__(self):
+        return hash((self.x, self.y))
+
     def __repr__(self) -> str:
         return f"({self.x}, {self.y})"
+    
+    def __getitem__(self, idx: int) -> int:
+        if idx == 0:
+            return self.x
+        if idx == 1:
+            return self.y
+        return None
 
 class LineSegment:
 
-    def __init__(self, point_one: tuple, point_two: tuple) -> None:
+    def __init__(self, point_one: Point | tuple, point_two: Point | tuple) -> None:
         self.point_one = Point(point_one[0], point_one[1])
         self.point_two = Point(point_two[0], point_two[1])
 
@@ -37,7 +51,7 @@ class LineSegment:
         """
 
         # Define a helper function for determining the direction of all four points
-        def direction(self, p: Point, q: Point, r: Point) -> float:
+        def direction(p: Point, q: Point, r: Point) -> float:
             """
             Computes the direction of the three given points.
 

@@ -3,7 +3,7 @@ Computational Geometry Package.
 
 Features:
     - [X] Line Segment Intersections
-    - [] Closest Pair of Points
+    - [X] Closest Pair of Points
     - [] Convex Hull
     - [] Largest Empty Circle
 
