@@ -46,4 +46,7 @@ class Plane:
         return intersection_points
     
     def get_convex_hull(self, points: list[Point]) -> list[Point]:
-        pass
+        """
+        Returns a list of points representing the smallest convex ployhedron/polygon containing
+        all the points. This uses the Gift Wrapping Algorithm.
+        """

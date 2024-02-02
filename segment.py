@@ -31,6 +31,9 @@ class Point:
         if idx == 1:
             return self.y
         return None
+    
+    def __eq__(self, other: Point) -> bool:
+        return self.x == other.x and self.y == other.y
 
 class LineSegment:
 
