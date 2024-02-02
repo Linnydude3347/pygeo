@@ -50,3 +50,48 @@ class Plane:
         Returns a list of points representing the smallest convex ployhedron/polygon containing
         all the points. This uses the Gift Wrapping Algorithm.
         """
+        # Define a small helper function to find the determinant of three points
+        def determinant(p1: Point, p2: Point, p3: Point) -> float:
+            """
+            We need this function to find the rotation from point to point.
+
+            Return > 0: Counter-clockwise rotation
+            Return < 0: Clockwise rotation
+            Return = 0: Collinear
+            """
+            return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x)
+        # Find the left most point, we'll use this as our starting point
+        # This point will always be in the hull, as being leftmost guarantees it
+        # to be on the outside
+        leftmost_point = Point(math.inf, math.inf)
+        for point in points:
+            if point.x < leftmost_point.x:
+                leftmost_point = point
+        # Set the current point to the leftmost point, our starting point
+        current_point = leftmost_point
+        # Create the hull list, with the first value being the leftmost point
+        hull = [leftmost_point]
+        # Set the next point value to the second point in the list
+        next_point = points[1]
+        # Set the current index to the third point, since we already have the second point
+        i = 2
+        while True:
+            # If its a clockwise rotation
+            if determinant(current_point, next_point, points[i]) < 0:
+                # Set the next point to the current point in the list
+                next_point = points[i]
+            # Increment the index by one
+            i += 1
+            # If we are at the end of the list
+            if i == len(points):
+                # If the next point equals our initial starting point, end the search
+                if next_point == leftmost_point:
+                    break
+                # Reset the index value
+                i = 0
+                # Add the next point to the hull
+                hull.append(next_point)
+                # Set the current point to the next point, essentially "incrementing" what point we are at
+                current_point = next_point
+                # Set the next point to the leftmost point, resetting our value
+                next_point = leftmost_point

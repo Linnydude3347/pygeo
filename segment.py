@@ -87,11 +87,12 @@ class LineSegment:
         # Check if they intersect, user may misuse this function.
         if not self.intersects_with(other):
             return None
+
         # Get the difference between the line segments coordinates, x and y
         diffx = Point(self.point_one.x - self.point_two.x, other.point_one.x - other.point_two.x)
         diffy = Point(self.point_one.y - self.point_two.y, other.point_one.y - other.point_two.y)
 
-        # Define a simple helper function to calculate the determinant
+        # Define a simple helper function to calculate the determinant of two points
         def determinant(diffa: Point, diffb: Point) -> int:
             return diffa.x * diffb.y - diffa.y * diffb.x
 
