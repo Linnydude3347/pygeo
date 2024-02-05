@@ -4,7 +4,7 @@ Computational Geometry Package.
 Features:
     - [X] Line Segment Intersections
     - [X] Closest Pair of Points
-    - [] Convex Hull
+    - [X] Convex Hull
     - [] Largest Empty Circle
 
 @authors Ben Antonellis, Alex Nguyen, Gabe Smith

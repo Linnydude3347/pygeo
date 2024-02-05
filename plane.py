@@ -95,3 +95,14 @@ class Plane:
                 current_point = next_point
                 # Set the next point to the leftmost point, resetting our value
                 next_point = leftmost_point
+        # Return the hull points list
+        return hull    
+
+    def largest_empty_circle(self, points: list[Point]) -> tuple[Point, float]:
+        """
+        Given a list of points, finds the largest circle within its center inside of their 
+        covex hull and enclosing none of them.
+
+        Returns tuple(Center of circle, diameter)
+        """
+        convex_hull = self.get_convex_hull(points)
