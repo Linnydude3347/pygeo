@@ -16,13 +16,15 @@ class Plane:
         Find a pair of points that have the shortest distance between them.
         Returns a tuple containing those two points.
         """
+        # Set the shortest distance to infinity, so we will always find a shorter point
         shortest_distance = math.inf
         shortest_pairs = None
         # Find all the unique pairs of points in the list
         pairs = set(list(itertools.combinations(points, 2)))
         for p1, p2 in pairs:
-            # Calculate the distance between each pair
+            # Calculate the distance between each pair using the Pythagorean Theorem
             distance = math.sqrt(((p2.x - p1.x) ** 2) + ((p2.y - p1.y) ** 2))
+            # If we find a closer point, grab this one
             if distance < shortest_distance:
                 shortest_pairs = (p1, p2)
                 shortest_distance = distance
