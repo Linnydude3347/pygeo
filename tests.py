@@ -36,4 +36,4 @@ class TestSegmentIntersections(unittest.TestCase):
             LineSegment(Point(1, 1), Point(5, 1)).intersects_with(LineSegment())
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(argv=["tests.py", "-v"])
