@@ -68,6 +68,7 @@ class Plane:
         # to be on the outside
         leftmost_point = Point(math.inf, math.inf)
         for point in points:
+            # If we find a more left-most point, use that one
             if point.x < leftmost_point.x:
                 leftmost_point = point
         # Set the current point to the leftmost point, our starting point
