@@ -38,6 +38,10 @@ class Point:
 class LineSegment:
 
     def __init__(self, point_one: Point | tuple, point_two: Point | tuple) -> None:
+        if not isinstance(point_one, Point) and not isinstance(point_one, tuple):
+            raise TypeError("Point One should be a Point or a tuple of length two.")
+        if not isinstance(point_two, Point) and not isinstance(point_two, tuple):
+            raise TypeError("Point Two should be a Point or a tuple of length two.")
         self.point_one = Point(point_one[0], point_one[1])
         self.point_two = Point(point_two[0], point_two[1])
 
@@ -52,6 +56,8 @@ class LineSegment:
         """
         Determines if this line segment is intersecting with the passed segment.
         """
+        if not isinstance(other, LineSegment):
+            raise TypeError("intersects_with requires a LineSegment to be passed.")
 
         # Define a helper function for determining the direction of all four points
         def direction(p: Point, q: Point, r: Point) -> float:
