@@ -85,19 +85,20 @@ class Plane:
                 next_point = points[i]
             # Increment the index by one
             i += 1
-            # If we are at the end of the list
-            if i == len(points):
-                # If the next point equals our initial starting point, end the search
-                if next_point == leftmost_point:
-                    break
-                # Reset the index value
-                i = 0
-                # Add the next point to the hull
-                hull.append(next_point)
-                # Set the current point to the next point, essentially "incrementing" what point we are at
-                current_point = next_point
-                # Set the next point to the leftmost point, resetting our value
-                next_point = leftmost_point
+            # If we are not at the end of the list, skip the rest of the iteration
+            if i != len(points):
+                continue
+            # If the next point equals our initial starting point, end the search
+            if next_point == leftmost_point:
+                break
+            # Reset the index value
+            i = 0
+            # Add the next point to the hull
+            hull.append(next_point)
+            # Set the current point to the next point, essentially "incrementing" what point we are at
+            current_point = next_point
+            # Set the next point to the leftmost point, resetting our value
+            next_point = leftmost_point
         # Return the hull points list
         return hull    
 
