@@ -21,6 +21,7 @@ class Plane:
         shortest_pairs = None
         # Find all the unique pairs of points in the list
         pairs = set(list(itertools.combinations(points, 2)))
+        # Unpack each tuple from the pairs
         for p1, p2 in pairs:
             # Calculate the distance between each pair using the Pythagorean Theorem
             distance = math.sqrt(((p2.x - p1.x) ** 2) + ((p2.y - p1.y) ** 2))
