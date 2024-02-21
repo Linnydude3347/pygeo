@@ -110,4 +110,38 @@ class Plane:
 
         Returns tuple(Center of circle, diameter)
         """
+        # Import some libraries (can only use them inside this function)
+        import numpy as np
+        from scipy.spatial import Voronoi
+        # Get the convex hull to find our bounding points
         convex_hull = self.get_convex_hull(points)
+        # Define a helper function for finding the closest point
+        def find_closest_point(current_point: Point, other_points: list[Point]) -> float:
+            # Convert our points array so we can use it with numpy
+            nodes = np.asarray(other_points)
+            # Subtract from our points list, since "other_points" may contain "current_point"
+            deltas = nodes - tuple(current_point)
+            # Find the distances to all the points
+            distance = np.linalg.norm(deltas, axis=1)
+            # Get the index of our desired distance
+            minimun_index = np.argmin(distance)
+            # Return that distance from the distances list
+            return float(distance[minimun_index])
+        points = np.array(points)
+        # Ensure we have at least four points or else this wont work
+        if len(points) <= 3:
+            raise ValueError("Requires at least four points in the 'points' array.")
+        # Find our Voroni Diagram
+        voronoi = Voronoi(points)
+        max_distance = 0
+        max_vertex = None
+        # Iterate through our diagram
+        for vertex in voronoi.vertices:
+            # Find the closest point
+            distance = find_closest_point(vertex, points)
+            # Set our distance to the greater of max_distance and distance
+            max_distance = max(distance, max_distance)
+            # Set our vector
+            max_vertex = vertex
+        # Return (center point, radius)
+        return (Point(max_vertex[0], max_vertex[1]), float(max_distance))

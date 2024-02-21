@@ -34,6 +34,10 @@ class Point:
     
     def __eq__(self, other: Point) -> bool:
         return self.x == other.x and self.y == other.y
+    
+    def __iter__(self):
+        for p in (self.x, self.y):
+            yield p
 
 class LineSegment:
 
@@ -120,9 +124,9 @@ class LineSegment:
 
     def __len__(self) -> float:
         return self.length()
-    
+
     def __repr__(self) -> str:
         return f"{self.point_one} {self.point_two}"
-    
+
     def __str__(self) -> str:
         return self.__repr__()
